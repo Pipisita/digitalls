@@ -1248,14 +1248,15 @@ html {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.6); /* Oscurece el fondo */
-    backdrop-filter: blur(3px); /* Difumina lo que queda atrás */
+    /* Lo hacemos un pelín más oscuro para compensar que sacamos el blur */
+    background: rgba(0, 0, 0, 0.75); 
     z-index: 9999;
     display: flex;
-    justify-content: flex-end; /* Esto obliga al panel a pegarse a la derecha */
+    justify-content: flex-end;
     opacity: 0;
     visibility: hidden;
-    transition: all 0.3s ease;
+    /* En vez de animar 'all', animamos solo lo necesario */
+    transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .cart-overlay.active {
@@ -1266,18 +1267,21 @@ html {
 .cart-sidebar {
     width: 420px;
     max-width: 100%;
-    height: 100vh; /* Ocupa el 100% del alto de la pantalla */
-    background-color: var(--bg-dark); /* Color oscuro de tu web */
+    height: 100vh;
+    background-color: var(--bg-dark);
     border-left: 1px solid var(--border-color);
     padding: 25px;
     display: flex;
     flex-direction: column;
-    transform: translateX(100%); /* Lo esconde fuera del monitor */
-    transition: transform 0.3s ease;
+    transform: translateX(100%);
+    /* Usamos una curva de animación más natural y fluida */
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    /* MAGIA ANTI-LAG: Le avisa a la placa de video que esto se va a mover */
+    will-change: transform; 
 }
 
 .cart-overlay.active .cart-sidebar {
-    transform: translateX(0); /* Lo desliza hacia adentro */
+    transform: translateX(0);
 }
 
 /* Estilos internos del carrito */
