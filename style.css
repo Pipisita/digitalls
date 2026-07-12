@@ -1572,3 +1572,16 @@ html {
 .btn-close:hover {
     color: #ff4d4d; /* Se pone rojo al pasar el mouse */
 }
+
+
+.dev-credit a {
+    color: var(--accent-blue); /* Usa el mismo color que ya tiene tu web */
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.dev-credit a:hover {
+    text-decoration: underline;
+    color: #fff;
+}
